@@ -359,14 +359,14 @@
       </ul>
     </div>
 
-    <form class="enroll-form" id="enrollForm" novalidate>
-      <div id="formSuccess" class="form-success" hidden>
-        <span class="star8 tiny" aria-hidden="true"></span>
-        <h3>Request received</h3>
-        <p>Jazak Allah Khair &mdash; our admissions team will reach out within 24 hours to arrange your free trial class.</p>
-      </div>
+    <form class="enroll-form" id="enrollForm"
+          action="https://formspree.io/f/REPLACE_WITH_YOUR_FORMSPREE_ID"
+          method="POST" novalidate>
 
+      <!-- STEP 1: FORM -->
       <div class="form-fields" id="formFields">
+        <div class="step-label">Step 1 — Enrollment Details</div>
+
         <div class="field">
           <label for="studentName">Student&rsquo;s full name</label>
           <input type="text" id="studentName" name="studentName" required>
@@ -387,10 +387,15 @@
           <label for="course">Course</label>
           <select id="course" name="course" required>
             <option value="" disabled selected>Select a course</option>
-            <option value="Hifz-ul-Qur'an + Tajweed">Hifz-ul-Qur&rsquo;an + Tajweed</option>
-            <option value="Nazra Qur'an + Tajweed">Nazra Qur&rsquo;an + Tajweed</option>
-            <option value="Basic Islamic Studies">Basic Islamic Studies</option>
-            <option value="School Program (Class 1-5)">School Program (Class 1&ndash;5)</option>
+            <option value="Hifz-ul-Qur'an + Tajweed ($50/month)">Hifz-ul-Qur&rsquo;an + Tajweed &mdash; $50/month</option>
+            <option value="Nazra Qur'an + Tajweed ($35/month)">Nazra Qur&rsquo;an + Tajweed &mdash; $35/month</option>
+            <option value="Basic Islamic Studies ($55/month)">Basic Islamic Studies &mdash; $55/month</option>
+            <option value="School Program KG ($30/month)">School Program &mdash; KG &mdash; $30/month</option>
+            <option value="School Program Class 1 ($40/month)">School Program &mdash; Class 1 &mdash; $40/month</option>
+            <option value="School Program Class 2 ($45/month)">School Program &mdash; Class 2 &mdash; $45/month</option>
+            <option value="School Program Class 3 ($50/month)">School Program &mdash; Class 3 &mdash; $50/month</option>
+            <option value="School Program Class 4 ($55/month)">School Program &mdash; Class 4 &mdash; $55/month</option>
+            <option value="School Program Class 5 ($60/month)">School Program &mdash; Class 5 &mdash; $60/month</option>
           </select>
         </div>
 
@@ -400,8 +405,8 @@
             <input type="text" id="parentName" name="parentName" required>
           </div>
           <div class="field">
-            <label for="whatsapp">WhatsApp / phone</label>
-            <input type="tel" id="whatsapp" name="whatsapp" required>
+            <label for="whatsapp">WhatsApp number</label>
+            <input type="tel" id="whatsapp" name="whatsapp" required placeholder="+92 300 0000000">
           </div>
         </div>
 
@@ -412,7 +417,7 @@
 
         <div class="field">
           <label for="preferredTime">Preferred class time</label>
-          <input type="text" id="preferredTime" name="preferredTime" placeholder="e.g. Weekday evenings, GMT+5">
+          <input type="text" id="preferredTime" name="preferredTime" placeholder="e.g. Weekday evenings, PKT">
         </div>
 
         <div class="field">
@@ -420,9 +425,39 @@
           <textarea id="message" name="message" rows="3"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-block">Request Free Trial Class</button>
-        <p class="form-note">By submitting, you agree to be contacted by our admissions team about your enrollment.</p>
+        <!-- hidden honeypot to block spam -->
+        <input type="text" name="_gotcha" style="display:none">
+
+        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+          Submit Enrollment &rarr;
+        </button>
+        <p class="form-note">Our team will contact you within 24 hours via WhatsApp or email.</p>
       </div>
+
+      <!-- STEP 2: PAYMENT (shown after submit) -->
+      <div id="formSuccess" class="form-success" hidden>
+        <span class="star8 tiny" aria-hidden="true"></span>
+        <h3>Enrollment Request Received!</h3>
+        <p>Jazak Allah Khair &mdash; we will contact you within 24 hours to confirm your free trial class.</p>
+
+        <div class="payment-box">
+          <div class="payment-title">Step 2 &mdash; Pay Your First Month Fee</div>
+          <p class="payment-note">Transfer your course fee to our Meezan Bank account below, then send the payment screenshot to our WhatsApp.</p>
+
+          <div class="bank-details">
+            <div class="bank-row"><span>Bank</span><strong>Meezan Bank</strong></div>
+            <div class="bank-row"><span>Account Title</span><strong>Muhammad Huzaifa</strong></div>
+            <div class="bank-row"><span>Account No.</span><strong>08020114146360</strong></div>
+            <div class="bank-row iban"><span>IBAN</span><strong>PK73MEZN0008020114146360</strong></div>
+          </div>
+
+          <a href="https://wa.me/923052972902?text=Assalamu%20Alaikum%2C%20I%20have%20enrolled%20and%20completed%20my%20fee%20transfer.%20Please%20find%20my%20payment%20screenshot%20attached."
+             class="btn btn-wa" target="_blank" rel="noopener">
+            &#x2713; Send Payment Screenshot on WhatsApp
+          </a>
+        </div>
+      </div>
+
     </form>
   </div>
 </section>
